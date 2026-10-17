@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DocuMind — Smart Document Organizer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="#"><span class="brand-mark"><svg viewBox="0 0 24 24"><path d="M6 3.8h8l4 4v12.4H6z"/><path d="M14 3.8v4h4M9 12h6M9 15.5h6"/></svg></span><span>docu<span class="brand-light">mind</span><small>SMART WORKSPACE</small></span></a>
+    <button class="upload-cta" id="uploadBtn"><span>＋</span> Upload documents</button>
+    <div class="nav-label">WORKSPACE</div>
+    <nav class="nav">
+      <button class="nav-item active" data-view="all"><span class="nav-icon">▦</span> All documents <span class="nav-count" id="allCount">0</span></button>
+      <button class="nav-item" data-view="recent"><span class="nav-icon">◷</span> Recently added</button>
+      <button class="nav-item" data-view="starred"><span class="nav-icon">☆</span> Starred</button>
+      <button class="nav-item" data-view="trash"><span class="nav-icon">♲</span> Trash <span class="nav-count" id="trashCount">0</span></button>
+    </nav>
+    <div class="nav-label folder-label">CATEGORIES <button id="addCategory" title="Add category">＋</button></div>
+    <nav class="nav" id="categoryNav">
+      <button class="nav-item" data-category="Personal"><span class="folder-dot purple"></span> Personal</button>
+      <button class="nav-item" data-category="Work"><span class="folder-dot blue"></span> Work</button>
+      <button class="nav-item" data-category="Finance"><span class="folder-dot green"></span> Finance</button>
+      <button class="nav-item" data-category="Education"><span class="folder-dot orange"></span> Education</button>
+      <button class="nav-item" data-category="Other"><span class="folder-dot gray"></span> Other</button>
+    </nav>
+    <div class="sidebar-bottom"><div class="storage-card"><div class="storage-head"><span class="storage-symbol">◈</span><b>Local workspace</b><span class="live-dot"></span></div><p>Your files stay in this browser.</p><div class="storage-track"><span></span></div><small id="storageText">No files uploaded yet</small></div><button class="profile"><span class="avatar">D</span><span><b>Demo workspace</b><small>Personal account</small></span><span class="more">···</span></button></div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><button class="mobile-menu" id="mobileMenu">☰</button><div class="breadcrumbs">Workspace <span>/</span> <b id="breadcrumb">All documents</b></div><div class="top-actions"><button class="icon-btn" id="themeToggle" title="Toggle theme">◐</button><button class="help-btn" id="helpBtn">? <span>Help</span></button><span class="top-avatar">D</span></div></header>
+    <section class="content">
+      <div class="welcome-row"><div><div class="eyebrow"><span class="sparkle">✦</span> YOUR DIGITAL FILING CABINET</div><h1 id="pageTitle">All documents<span class="title-period">.</span></h1><p class="subtitle" id="pageSubtitle">Everything you need, organized in one place.</p></div><button class="primary-btn" id="topUpload">＋ <span>Upload files</span></button></div>
+      <div class="stats-grid">
+        <article class="stat-card"><div class="stat-top"><span>Total documents</span><span class="stat-icon violet">▤</span></div><div class="stat-number" id="statTotal">0</div><div class="stat-foot"><span class="tiny-dot violet-bg"></span> In your workspace</div></article>
+        <article class="stat-card"><div class="stat-top"><span>Categories</span><span class="stat-icon mint">▦</span></div><div class="stat-number" id="statCategories">5</div><div class="stat-foot">Keep everything in its place</div></article>
+        <article class="stat-card"><div class="stat-top"><span>Starred files</span><span class="stat-icon amber">☆</span></div><div class="stat-number" id="statStarred">0</div><div class="stat-foot">Your important documents</div></article>
+        <article class="stat-card"><div class="stat-top"><span>Storage used</span><span class="stat-icon sky">◫</span></div><div class="stat-number" id="statStorage">0 B</div><div class="stat-foot">Stored in this browser session</div></article>
+      </div>
+      <div class="toolbar"><div class="search-wrap"><span class="search-icon">⌕</span><input id="searchInput" type="search" placeholder="Search documents, tags, file types..." autocomplete="off"><kbd>⌘ K</kbd></div><div class="toolbar-right"><label class="filter-label">Category <select id="categoryFilter"><option value="all">All categories</option><option>Personal</option><option>Work</option><option>Finance</option><option>Education</option><option>Other</option></select></label><button class="view-toggle active" id="gridView" title="Grid view">▦</button><button class="view-toggle" id="listView" title="List view">☷</button></div></div>
+      <div class="section-head"><div><h2 id="sectionTitle">Your documents <span id="visibleCount">0</span></h2><p>Browse, search, and manage your files.</p></div><select id="sortSelect" class="sort-select"><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="name">Name A–Z</option><option value="size">Largest first</option></select></div>
+      <div id="dropZone" class="drop-zone"><div class="drop-icon">↥</div><div><b>Drop files here to upload</b><p>Or click <button id="browseInline">browse files</button> from your computer</p></div><span class="drop-types">PDF · DOCX · XLSX · PPTX · Images · More</span></div>
+      <div id="documentGrid" class="document-grid"></div>
+      <div id="emptyState" class="empty-state"><div class="empty-art"><div class="art-paper paper-back"></div><div class="art-paper paper-front"><span>＋</span><i></i><i></i><i></i></div><div class="art-spark">✦</div></div><h3 id="emptyTitle">Your workspace is a blank canvas</h3><p id="emptyText">Upload your first document and start building a smarter, more organized workspace.</p><button class="primary-btn" id="emptyUpload">＋ Upload your first file</button><small>Files are kept locally in this browser. Nothing is sent to a server.</small></div>
+      <footer><span>✦ Organized with <b>DocuMind</b></span><span>Private by design · Local browser storage</span></footer>
+    </section>
+  </main>
+</div>
+<input id="fileInput" type="file" multiple hidden>
+<div class="toast" id="toast" role="status"></div>
+<dialog id="detailDialog"><form method="dialog"><button class="dialog-close" aria-label="Close">×</button></form><div id="detailContent"></div></dialog>
+<dialog id="categoryDialog"><form method="dialog"><button class="dialog-close" aria-label="Close">×</button></form><h3>Create a category</h3><p>Give your documents a new home.</p><input id="newCategoryInput" maxlength="28" placeholder="e.g. Projects"><div class="dialog-actions"><button class="secondary-btn" id="cancelCategory">Cancel</button><button class="primary-btn" id="saveCategory">Create category</button></div></dialog>
+<dialog id="helpDialog"><form method="dialog"><button class="dialog-close" aria-label="Close">×</button></form><div class="help-mark">✦</div><h3>Welcome to DocuMind</h3><p>Your lightweight, private document workspace.</p><div class="help-list"><div><b>01</b><span><strong>Upload</strong><small>Add multiple files using the upload button or drag-and-drop.</small></span></div><div><b>02</b><span><strong>Organize</strong><small>Choose categories, add tags, and star important files.</small></span></div><div><b>03</b><span><strong>Find anything</strong><small>Search filenames, categories, tags, and file types.</small></span></div></div><p class="privacy-note">Privacy note: this demo stores file metadata in local browser storage. File contents are not uploaded to a server, and the browser may clear local data.</p><form method="dialog"><button class="primary-btn full-btn">Got it</button></form></dialog>
+<script src="app.js"></script>
+</body></html>
